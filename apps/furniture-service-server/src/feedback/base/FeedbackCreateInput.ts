@@ -11,48 +11,45 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { FeedbackListRelationFilter } from "../../feedback/base/FeedbackListRelationFilter";
-import { ValidateNested, IsOptional } from "class-validator";
+import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
+import { ValidateNested, IsOptional, IsString, IsInt } from "class-validator";
 import { Type } from "class-transformer";
-import { StringFilter } from "../../util/StringFilter";
-import { OrderListRelationFilter } from "../../order/base/OrderListRelationFilter";
 
 @InputType()
-class CustomerWhereInput {
+class FeedbackCreateInput {
   @ApiProperty({
     required: false,
-    type: () => FeedbackListRelationFilter,
+    type: () => CustomerWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => FeedbackListRelationFilter)
+  @Type(() => CustomerWhereUniqueInput)
   @IsOptional()
-  @Field(() => FeedbackListRelationFilter, {
+  @Field(() => CustomerWhereUniqueInput, {
     nullable: true,
   })
-  feedbacks?: FeedbackListRelationFilter;
+  customer?: CustomerWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,
-    type: StringFilter,
+    type: String,
   })
-  @Type(() => StringFilter)
+  @IsString()
   @IsOptional()
-  @Field(() => StringFilter, {
+  @Field(() => String, {
     nullable: true,
   })
-  id?: StringFilter;
+  message?: string | null;
 
   @ApiProperty({
     required: false,
-    type: () => OrderListRelationFilter,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => OrderListRelationFilter)
+  @IsInt()
   @IsOptional()
-  @Field(() => OrderListRelationFilter, {
+  @Field(() => Number, {
     nullable: true,
   })
-  orders?: OrderListRelationFilter;
+  rating?: number | null;
 }
 
-export { CustomerWhereInput as CustomerWhereInput };
+export { FeedbackCreateInput as FeedbackCreateInput };
