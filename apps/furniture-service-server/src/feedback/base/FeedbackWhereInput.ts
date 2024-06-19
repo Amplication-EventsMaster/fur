@@ -11,25 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { FeedbackListRelationFilter } from "../../feedback/base/FeedbackListRelationFilter";
+import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { StringFilter } from "../../util/StringFilter";
-import { OrderListRelationFilter } from "../../order/base/OrderListRelationFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 
 @InputType()
-class CustomerWhereInput {
+class FeedbackWhereInput {
   @ApiProperty({
     required: false,
-    type: () => FeedbackListRelationFilter,
+    type: () => CustomerWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => FeedbackListRelationFilter)
+  @Type(() => CustomerWhereUniqueInput)
   @IsOptional()
-  @Field(() => FeedbackListRelationFilter, {
+  @Field(() => CustomerWhereUniqueInput, {
     nullable: true,
   })
-  feedbacks?: FeedbackListRelationFilter;
+  customer?: CustomerWhereUniqueInput;
 
   @ApiProperty({
     required: false,
@@ -44,15 +45,25 @@ class CustomerWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => OrderListRelationFilter,
+    type: StringNullableFilter,
   })
-  @ValidateNested()
-  @Type(() => OrderListRelationFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => OrderListRelationFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  orders?: OrderListRelationFilter;
+  message?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntNullableFilter,
+  })
+  @Type(() => IntNullableFilter)
+  @IsOptional()
+  @Field(() => IntNullableFilter, {
+    nullable: true,
+  })
+  rating?: IntNullableFilter;
 }
 
-export { CustomerWhereInput as CustomerWhereInput };
+export { FeedbackWhereInput as FeedbackWhereInput };

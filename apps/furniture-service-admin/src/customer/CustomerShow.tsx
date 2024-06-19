@@ -22,6 +22,26 @@ export const CustomerShow = (props: ShowProps): React.ReactElement => {
         <TextField label="ID" source="id" />
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceManyField
+          reference="Feedback"
+          target="customerId"
+          label="Feedbacks"
+        >
+          <Datagrid rowClick="show">
+            <DateField source="createdAt" label="Created At" />
+            <ReferenceField
+              label="Customer"
+              source="customer.id"
+              reference="Customer"
+            >
+              <TextField source={CUSTOMER_TITLE_FIELD} />
+            </ReferenceField>
+            <TextField label="ID" source="id" />
+            <TextField label="message" source="message" />
+            <TextField label="rating" source="rating" />
+            <DateField source="updatedAt" label="Updated At" />
+          </Datagrid>
+        </ReferenceManyField>
+        <ReferenceManyField
           reference="Order"
           target="customerId"
           label="Orders"

@@ -11,36 +11,46 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { FeedbackCreateNestedManyWithoutCustomersInput } from "./FeedbackCreateNestedManyWithoutCustomersInput";
+import { FeedbackWhereInput } from "./FeedbackWhereInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { OrderCreateNestedManyWithoutCustomersInput } from "./OrderCreateNestedManyWithoutCustomersInput";
 
 @InputType()
-class CustomerCreateInput {
+class FeedbackListRelationFilter {
   @ApiProperty({
     required: false,
-    type: () => FeedbackCreateNestedManyWithoutCustomersInput,
+    type: () => FeedbackWhereInput,
   })
   @ValidateNested()
-  @Type(() => FeedbackCreateNestedManyWithoutCustomersInput)
+  @Type(() => FeedbackWhereInput)
   @IsOptional()
-  @Field(() => FeedbackCreateNestedManyWithoutCustomersInput, {
+  @Field(() => FeedbackWhereInput, {
     nullable: true,
   })
-  feedbacks?: FeedbackCreateNestedManyWithoutCustomersInput;
+  every?: FeedbackWhereInput;
 
   @ApiProperty({
     required: false,
-    type: () => OrderCreateNestedManyWithoutCustomersInput,
+    type: () => FeedbackWhereInput,
   })
   @ValidateNested()
-  @Type(() => OrderCreateNestedManyWithoutCustomersInput)
+  @Type(() => FeedbackWhereInput)
   @IsOptional()
-  @Field(() => OrderCreateNestedManyWithoutCustomersInput, {
+  @Field(() => FeedbackWhereInput, {
     nullable: true,
   })
-  orders?: OrderCreateNestedManyWithoutCustomersInput;
+  some?: FeedbackWhereInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => FeedbackWhereInput,
+  })
+  @ValidateNested()
+  @Type(() => FeedbackWhereInput)
+  @IsOptional()
+  @Field(() => FeedbackWhereInput, {
+    nullable: true,
+  })
+  none?: FeedbackWhereInput;
 }
-
-export { CustomerCreateInput as CustomerCreateInput };
+export { FeedbackListRelationFilter as FeedbackListRelationFilter };

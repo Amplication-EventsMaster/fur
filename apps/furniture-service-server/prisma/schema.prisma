@@ -7,11 +7,19 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Customer {
+model Product {
   createdAt DateTime @default(now())
   id        String   @id @default(cuid())
   orders    Order[]
   updatedAt DateTime @updatedAt
+}
+
+model Customer {
+  createdAt DateTime   @default(now())
+  feedbacks Feedback[]
+  id        String     @id @default(cuid())
+  orders    Order[]
+  updatedAt DateTime   @updatedAt
 }
 
 model Order {
@@ -26,15 +34,18 @@ model Order {
   updatedAt   DateTime  @updatedAt
 }
 
-model Product {
-  createdAt DateTime @default(now())
-  id        String   @id @default(cuid())
-  orders    Order[]
-  updatedAt DateTime @updatedAt
-}
-
 model Supplier {
   createdAt DateTime @default(now())
   id        String   @id @default(cuid())
   updatedAt DateTime @updatedAt
+}
+
+model Feedback {
+  createdAt  DateTime  @default(now())
+  customer   Customer? @relation(fields: [customerId], references: [id])
+  customerId String?
+  id         String    @id @default(cuid())
+  message    String?
+  rating     Int?
+  updatedAt  DateTime  @updatedAt
 }
