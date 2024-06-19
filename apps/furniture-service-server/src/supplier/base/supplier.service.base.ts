@@ -19,28 +19,28 @@ export class SupplierServiceBase {
     return this.prisma.supplier.count(args);
   }
 
-  async suppliers<T extends Prisma.SupplierFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.SupplierFindManyArgs>
+  async suppliers(
+    args: Prisma.SupplierFindManyArgs
   ): Promise<PrismaSupplier[]> {
-    return this.prisma.supplier.findMany<Prisma.SupplierFindManyArgs>(args);
+    return this.prisma.supplier.findMany(args);
   }
-  async supplier<T extends Prisma.SupplierFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.SupplierFindUniqueArgs>
+  async supplier(
+    args: Prisma.SupplierFindUniqueArgs
   ): Promise<PrismaSupplier | null> {
     return this.prisma.supplier.findUnique(args);
   }
-  async createSupplier<T extends Prisma.SupplierCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.SupplierCreateArgs>
+  async createSupplier(
+    args: Prisma.SupplierCreateArgs
   ): Promise<PrismaSupplier> {
-    return this.prisma.supplier.create<T>(args);
+    return this.prisma.supplier.create(args);
   }
-  async updateSupplier<T extends Prisma.SupplierUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.SupplierUpdateArgs>
+  async updateSupplier(
+    args: Prisma.SupplierUpdateArgs
   ): Promise<PrismaSupplier> {
-    return this.prisma.supplier.update<T>(args);
+    return this.prisma.supplier.update(args);
   }
-  async deleteSupplier<T extends Prisma.SupplierDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.SupplierDeleteArgs>
+  async deleteSupplier(
+    args: Prisma.SupplierDeleteArgs
   ): Promise<PrismaSupplier> {
     return this.prisma.supplier.delete(args);
   }
